@@ -7,7 +7,7 @@ var button = d3.select("#button");
 button.on("click", function() {
 
   // Select the input element and get the raw HTML node
-  var inputElement = d3.select("#patient-form-input");
+  var inputElement = d3.select("#title-form-input").property("value");
 
   // Get the value property of the input element
   var inputValue = inputElement.property("value");

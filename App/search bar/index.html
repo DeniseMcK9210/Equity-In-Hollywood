@@ -12,25 +12,25 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <form>
-          <div class="form-group">
-            <label for="patient-form">Search for a Movie here to see if it passes the Bechdel test:</label>
-            <input class="form-control" id="patient-form-input" name="patient-form" type="text" placeholder="AB-">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <form>
+              <div class="form-group">
+                <label for="title-form">Search for a Movie here to see if it passes the Bechdel test:</label>
+                <input class="form-control" id="title-form-input" name="title-form" type="text" placeholder="Type in a movie title">
+              </div>
+              <button id="button" type="button" class="btn btn-default">Enter</button>
+            </form>
           </div>
-          <button id="button" type="button" class="btn btn-default">Enter</button>
-        </form>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Does your movie pass?</h1>
+            <ul class="summary"></ul>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Does your movie pass?</h1>
-        <ul class="summary"></ul>
-      </div>
-    </div>
-  </div>
 </body>
 <script src="data.js"></script>
 <script src="app.js"></script>
