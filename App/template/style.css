@@ -1,9 +1,24 @@
+/* impact font for header */
+.fh-impact {
+    font-family: Impact, fantasy;
+    color: #19014b;
+    font-size: 1.6em;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+  }
+
+/* font for links */
+.fa-sans {
+    font-family: Trebuchet MS, sans-serif;
+    }
+
+
 /* The side navigation menu */
 .sidebar {
     margin: 0;
     padding: 0;
     width: 175px;
-    background-color: #f1f1f1;
+    background-color: #19014b;
     position: fixed;
     height: 88%;
     overflow: auto;
@@ -20,14 +35,15 @@
   
   /* Active/current link */
   .sidebar a.active {
-    background-color: #4CAF50;
-    color: black;
+    background-color: #2e008d;
+    color: #fdf9e5;
+    font-weight: bold;
   }
   
   /* Links on mouse-over */
   .sidebar a:hover:not(.active) {
     background-color: #555;
-    color: white;
+    color: #fdf9e5;
   }
   
   /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
