@@ -1,3 +1,8 @@
+/*form inputs in 1 row*/
+.inline {
+    display: inline-block
+}
+
 /* impact font for header */
 .fh-impact {
     font-family: Impact, fantasy;
