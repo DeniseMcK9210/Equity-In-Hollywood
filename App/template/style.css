@@ -1,20 +1,91 @@
-/*form inputs in 1 row*/
-.inline {
-    display: inline-block
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: transparent;
+    color: #2e008d;
+    text-align: right
+}
+
+.bg-white {
+    background: white
+}
+
+.push {
+    margin-top: 90px
+}
+
+.stay{
+    position: fixed
+}
+
+.logo {
+    height: 70px
+}
+
+.hr-p {
+  border: 1px solid #ff1569;
+}
+
+.hr-y {
+  border: 1px solid #f3ff13;
+}
+
+.hr-o {
+  border: 1px solid #ff6e4e;
+}
+
+.pink{
+    color: #ff1569
+}
+
+.orange{
+    color: #ff6e4e
+}
+
+.yellow{
+    color: #f3ff13
+}
+
+.purple{
+    color: #ee3ec9
+}
+
+.dpurple {
+    color: #2e008d
+}
+
+#filter {
+    background-color: #2e008d;
+    color: #fdf9e5
+}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+/*bg d purple*/
+.bg-dp {
+    background-color: #19014b;
 }
 
 /* impact font for header */
-.fh-impact {
-    font-family: Impact, fantasy;
+.fh-sans {
+    font-family: "Helvetica Neue", "Arial", sans-serif;
     color: #19014b;
-    font-size: 1.6em;
-    letter-spacing: 1px;
+    font-size: 1.5em;
+    letter-spacing: .5px;
     font-variant: small-caps;
   }
 
 /* font for links */
 .fa-sans {
-    font-family: Trebuchet MS, sans-serif;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-weight: 300
     }
 
 
@@ -25,7 +96,7 @@
     width: 175px;
     background-color: #19014b;
     position: fixed;
-    height: 88%;
+    height: 80%;
     overflow: auto;
     border-radius: 10px
   }
@@ -42,13 +113,13 @@
   .sidebar a.active {
     background-color: #2e008d;
     color: #fdf9e5;
-    font-weight: bold;
+    font-weight: 350;
   }
   
   /* Links on mouse-over */
   .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: #fdf9e5;
+    background-color: #fdf9e5;
+    color: #2e008d;
   }
   
   /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
