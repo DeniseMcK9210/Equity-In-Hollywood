@@ -31,10 +31,8 @@
             <a href="dashboard.html">Dashboard</a>
             <a class="nav-link dropdown-toggle" href="viz.html" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visualizations</a>
                       <div class="dropdown-menu dropdown-menu-right bg-dp" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="viz.html">Word Cloud</a>
-                        <a class="dropdown-item" href="viz.html">Something</a>
-                        <a class="dropdown-item" href="viz.html">Stuff</a>
-                        <a class="dropdown-item" href="viz.html">Whatever</a>
+                        <a class="dropdown-item" href="viz.html">Genres over Time</a>
+                        <a class="dropdown-item" href="viz.html">Women of their Word</a>
                       </div>
             <a class="active" href="title_search.html">Title Search</a>
             <a href="resources.html">Resources</a>
@@ -49,21 +47,23 @@
                 <form>
                   <div class="form-group">
                     <label class="purple" for="title-form1">Select your first title</label>
-                    <input class="form-control" id="title1-input" name="title-form1" type="text" placeholder="Movie Title 1">
+                    <select id="title1-input" type="text" placeholder="Movie Title 1" name="title-form1"></select>
                   </div>
-                  <button id="button" type="button" class="btn btn-default">Compare</button>
+                  <button id="button1" type="button" class="btn btn-default">Compare</button>
                 <hr class="hr-p">
                   </form>
+                  <div id=#ts1></div>
               </div>
                 <div class="jumbotron col-md-5 col-sm-12 mx-4">
                 <form>
                   <div class="form-group">
                     <label class="purple" for="title-form2">Select another title</label>
-                    <input class="form-control" id="title2-input" name="title-form2" type="text" placeholder="Movie Title 2">
+                    <select id="title2-input" type="text" placeholder="Movie Title 2" name="title-form2"></select>
                   </div>
-                  <button id="button" type="button" class="btn btn-default">Compare</button>
+                  <button id="button2" type="button" class="btn btn-default">Compare</button>
                     <hr class="hr-p">
                 </form>
+                <div id=#ts2></div>
               </div>
             </div>
           </div>

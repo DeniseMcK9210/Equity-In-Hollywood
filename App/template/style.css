@@ -1,3 +1,17 @@
+ul{
+    list-style-type: circle;
+    color: #ff1569
+}
+
+a {
+    color:#ff6e4e;
+    text-decoration: none
+}
+
+a:hover {
+    color: #ff1569
+}
+
 footer {
     position: relative;
     left: 0;
