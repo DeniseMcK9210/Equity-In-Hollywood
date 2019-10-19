@@ -25,10 +25,8 @@
             <form class="text-right form-inline" action="/action_page.php">
                 <label class="mr-3" for="gsearch">Genre</label>
                 <select class="mr-4" id="gfilter" type="text" placeholder="genre" name="gsearch"></select>
-                    <option></option>
                 <label class="mr-3" for="dsearch">Decade</label>
                 <select class="mr-3" id="dfilter" type="text" placeholder="decade" name="dsearch"></select>
-                    <option></option>
                 <button class="btn mr-5" id="filter" type="submit">Filter</button>
             </form>
         </div>
@@ -72,11 +70,10 @@
 
           <div class="row">
             <div class="jumbotron col-lg-6 col-md-12 mx-auto">
-                <div id="graph1">
                         <h4 class="dpurple">Word Cloud</h4>
                         <hr class="my-4 hr-y">
+                        <div id="graph1"></div>
                         <p class="lead">this is a placeholder</p>
-                    </div>
                 </div>
               <div class="jumbotron col-lg-4 col-md-12 mx-auto">
                   <div id="graph2">
@@ -89,11 +86,10 @@
 
           <div class="row">
               <div class="jumbotron col-lg-11 mx-auto">
-                  <div id="graph3">
                     <h4 class="dpurple">Bubble 3</h4>
                     <hr class="my-4 hr-p">
+                    <div id="graph3"></div>
                     <p class="lead">x=budget   y= domestic gross    color=pass/fail    s=imdb score</p>
-                  </div>
               </div>
           </div>
         </div>
