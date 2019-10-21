@@ -1,31 +1,32 @@
+
 // Create bubble chart (function)
 function bubble(data) {
 
-var bubble_trace = {
-    x: data.budget,
-    y: data.dgross,
-    mode: 'markers',
-    marker: {
-      color: data.bwscore,
-      opacity: .75,
-      size: data.imdbscore
+  var bubble_trace = {
+      x: data.budget,
+      y: data.dgross,
+      mode: 'markers',
+      marker: {
+        color: data.bwscore,
+        opacity: .75,
+        size: data.imdbscore
+      };
+    
+    var bubble_data = [bubble_trace];
+    
+    var bubble_layout = {
+      showlegend: true,
+      height: 600,
+      width: 1200,
+      xaxis:{
+          title: 'Budget($)'
+        },
+      yaxis:{
+      title: 'Domestic Gross ($)'
+      }
     };
   
-  var bubble_data = [bubble_trace];
-  
-  var bubble_layout = {
-    showlegend: true,
-    height: 600,
-    width: 1200,
-    xaxis:{
-        title: 'Budget($)'
-      },
-    yaxis:{
-    title: 'Domestic Gross ($)'
-    }
-  };
-  
-  Plotly.newPlot('graph3', bubble_data, bubble_layout);
+   Plotly.newPlot('graph3', bubble_data, bubble_layout);
 };
 
 //Fill in filter options (function)
@@ -117,3 +118,35 @@ dashboard()
 
 //Filter the dashboard on click of filter button
 d3.select("#filter").on("click", dashfilter())
+
+// crreat a bar chart fuction
+function bar_chart(data){
+
+  var trace1 = {
+      x: data.genres, 
+      y: data.averageRating,
+      type: 'bar',
+      text: yValue,
+      textposition: 'auto',
+      hoverinfo: 'none',
+      marker: {
+        color: 'rgb(158,202,225)',
+        opacity: 0.6,
+        line: {
+          color: 'rbg(8,48,107)',
+          width: 1.5
+        }
+      }
+  };
+
+  var bar_data = [trace1];
+
+  var bar_layout = {
+    title: 'Genere Average Rating'
+  };
+
+  Plotly.newPlot('graph2', bar_data, bar_layout);
+};
+
+ 
+
