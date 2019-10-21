@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Equity in Hollywood</title>
+  </head>
+    
+<body class="fa-sans">
+    <nav class="navbar navbar-expand-lg bg-white fixed-top py-1">
+        <a class="navbar-brand" href="home.html">
+            <img class="logo" src="logo.png" alt="Gender Equity in Hollywood">
+            </a>
+        <div class="ml-auto">
+            <form class="text-right form-inline" action="/action_page.php">
+                <label class="mr-3" for="gsearch">Genre</label>
+                <select class="mr-4" id="gfilter" type="text" placeholder="genre" name="gsearch"></select>
+                <label class="mr-3" for="dsearch">Decade</label>
+                <select class="mr-3" id="dfilter" type="text" placeholder="decade" name="dsearch"></select>
+                <button class="btn mr-5" id="filter" type="submit">Filter</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- The sidebar -->
+    <div class="push">
+        <div class="sidebar">
+            <a href="home.html">Home</a>
+            <a class="active" href="dashboard.html">Dashboard</a>
+            <a class="nav-link dropdown-toggle" href="viz.html" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visualizations</a>
+                      <div class="dropdown-menu dropdown-menu-right bg-dp" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="viz.html">Genres over Time</a>
+                        <a class="dropdown-item" href="viz.html">Women of their Word</a>
+                      </div>
+            <a href="title_search.html">Title Search</a>
+            <a href="resources.html">Resources</a>
+        </div>
+
+        <!-- Page content -->
+        <div class="content">
+          <div class="row">
+                <div class="jumbotron col-lg-3 col-sm-12 m-4 text-center mx-auto py-4">
+                        <img src="#" id="statpic1">
+                        <h1 class="orange" id="stat1">1234</h1>
+                        <h5 class="dpurple">Fill Circle 1</h5>
+                </div>
+                <div class="jumbotron col-lg-3 col-sm-12 m-4 text-center mx-auto py-4">
+                    <img src="#" id="statpic2">
+                    <h1  class="pink" id="stat2">1234</h1>
+                    <h5 class="dpurple">Fill Circle 2</h5>
+                </div>
+                <div class="jumbotron col-lg-3 col-sm-12 m-4 text-center mx-auto py-4">
+                    <img src="#" id="statpic3">
+                    <h1 class="purple" id="stat3">1234</h1>
+                    <h5 class="dpurple">Fill Circle 3</h5>
+                </div>
+          </div>
+
+          <div class="row">
+            <div class="jumbotron col-lg-6 col-md-12 mx-auto">
+                        <h4 class="dpurple">Word Cloud</h4>
+                        <hr class="my-4 hr-y">
+                        <div id="graph1"></div>
+                        <p class="lead">this is a placeholder</p>
+                </div>
+              <div class="jumbotron col-lg-4 col-md-12 mx-auto">
+                  <div id="graph2">
+                     <h4 class="dpurple">Bar 2</h4>
+                     <hr class="my-4 hr-o">
+                        <p>also a placeholder</p>
+                  </div>
+                  </div>
+              </div>
+
+          <div class="row">
+              <div class="jumbotron col-lg-11 mx-auto">
+                    <h4 class="dpurple">Bubble 3</h4>
+                    <hr class="my-4 hr-p">
+                    <div id="graph3"></div>
+                    <p class="lead">x=budget   y= domestic gross    color=pass/fail    s=imdb score</p>
+              </div>
+          </div>
+        </div>
+    </div>
+</body>
+    
+<footer class="py-3">
+      <div class="container">
+        <p class="m-0 text-center"> Copyright &copy; 2019 Denise McKinley. All rights reserved.</p>
+      </div>
+    </footer>
+</html>
