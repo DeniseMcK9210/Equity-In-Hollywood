@@ -26,6 +26,7 @@ window.chartColors = {
 		'December'
 	];
 
+
 	var COLORS = [
 		'#4dc9f6',
 		'#f67019',
@@ -98,7 +99,7 @@ window.chartColors = {
 			return values;
 		},
 
-		months: function(config) {
+		years: function(config) {
 			var cfg = config || {};
 			var count = cfg.count || 12;
 			var section = cfg.section;
@@ -106,7 +107,7 @@ window.chartColors = {
 			var i, value;
 
 			for (i = 0; i < count; ++i) {
-				value = MONTHS[Math.ceil(i) % 12];
+				value = YEARS[Math.ceil(i) % 12];
 				values.push(value.substring(0, section));
 			}
 
