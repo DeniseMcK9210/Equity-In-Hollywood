@@ -284,13 +284,21 @@ function loadLiquidFillGauge(elementId, value, config) {
     return new GaugeUpdater();
 }
 
-function create_gauge() {
-    var gauge1 = loadLiquidFillGauge("fillgauge1", 32, config2);
+function create_gauge(data, rating) {
+    var array = data.bechdel_rating
+    var counttotal = array.length
+    var count123 = 0;
+    for(var i = 0; i < array.length; ++i){
+        if(array[i] == rating)
+            count123++;
+    }
+    var value = (count1/counttotal)*100
+    var gauge1 = loadLiquidFillGauge(`fillgauge${rating}`, value, config2);
     var config2 = liquidFillGaugeDefaultSettings();
-    config2.circleColor = "#D4AB6A";
-    config2.textColor = "#553300";
-    config2.waveTextColor = "#805615";
-    config2.waveColor = "#AA7D39";
+    config2.circleColor = "#ee3ec9";
+    config2.textColor = "#ff1569";
+    config2.waveTextColor = "#ee3ec9";
+    config2.waveColor = "#ee3ec9";
     config2.circleThickness = 0.1;
     config2.circleFillGap = 0.2;
     config2.textVertPosition = 0.8;

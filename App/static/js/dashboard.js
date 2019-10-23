@@ -2,8 +2,8 @@
 function bar_chart(data){
 
   var trace1 = {
-      x: data.genres, 
-      y: data.averageRating,
+      x: data.genre, 
+      y: data.imdb_rating,
       type: 'bar',
       text: yValue,
       textposition: 'auto',
@@ -114,8 +114,14 @@ function dashfilter() {
     //Fill filter options
     options(newdata);
 
-    //Fill BW Score gauges
-    
+    //Fill BW Score gauge 1
+    create_gauge(newdata, 1)
+
+    //Fill BW Score gauge 2
+    create_gauge(newdata, 2)
+
+    //Fill BW Score gauge 3
+    create_gauge(newdata, 3)
 
     //Create Bar Chart
     bar_chart(newdata);
@@ -135,8 +141,14 @@ function dashboard() {
       //Fill filter options
       options(data);
 
-      //Fill BW Score gauges
-      
+      //Fill BW Score gauge 1
+      create_gauge(data, 1)
+
+      //Fill BW Score gauge 2
+      create_gauge(data, 2)
+
+      //Fill BW Score gauge 3
+      create_gauge(data, 3)
 
       //Create Bar Chart
       bar_chart(data);
