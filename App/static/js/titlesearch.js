@@ -4,8 +4,8 @@ function titles(data) {
     var title1 = d3.select("#title1-input");
     var title2 = d3.select("#title2-input");
   
-    //Define lists of genres and decades
-    var titles = data.title;
+    //Define lists of titles
+    var titles = data.title.slice(0,100);
 
     //Options for title 1
     titles.forEach((t) => {

@@ -117,9 +117,6 @@ function dashfilter() {
     //Fill BW Score gauges
     
 
-    //Create Word cloud
-    
-
     //Create Bar Chart
     bar_chart(newdata);
 
@@ -139,9 +136,6 @@ function dashboard() {
       options(data);
 
       //Fill BW Score gauges
-      
-
-      //Create Word cloud
       
 
       //Create Bar Chart
