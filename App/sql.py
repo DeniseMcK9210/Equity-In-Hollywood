@@ -79,7 +79,8 @@ def main():
                         "B" text NOT NULL,
                         "C" text NOT NULL,
                         "averageRating" real NOT NULL,
-                        "numVotes" integer NOT NULL);"""
+                        "numVotes" integer NOT NULL,
+                        PRIMARY KEY ("imdbid"));"""
     
     csv = "../bechdel_final.csv"
  

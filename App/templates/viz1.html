@@ -13,6 +13,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="{{ url_for('static', filename='js/viz1.js') }}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="style.css">
     <title>Equity in Hollywood</title>
   </head>
@@ -20,7 +21,7 @@
 
   <body class="fa-sans"> 
       <nav class="navbar navbar-expand-lg bg-white py-1 fixed-top">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="/">
             <img class="logo" src="media/logo.png" alt="Gender Equity in Hollywood">
             </a>
         </nav>
@@ -28,15 +29,15 @@
     <!-- The sidebar -->
        <div class="push">
          <div class="sidebar">
-            <a href="home.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
+            <a href="/home">Home</a>
+            <a href="/dashboard">Dashboard</a>
             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visualizations</a>
                       <div class="dropdown-menu dropdown-menu-right bg-dp" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="viz1.html">Genres over Time</a>
-                        <a class="dropdown-item" href="viz2.html">Women of Their Word</a>
+                        <a class="dropdown-item" href="/genres-over-time">Genres over Time</a>
+                        <a class="dropdown-item" href="/women-of-their-word">Women of Their Word</a>
                       </div>
-            <a href="title_search.html">Title Search</a>
-            <a href="resources.html">Resources</a>
+            <a href="/title-search">Title Search</a>
+            <a href="/resources">Resources</a>
         </div>
 
         <!-- Page content -->

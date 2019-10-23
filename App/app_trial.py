@@ -18,7 +18,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bechdel_final.sqlite"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -26,14 +26,52 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
 
+#Base.classes.keys()
+
 # Save reference to table
-movies = Base.classes.bechdel
+#movies= Base.classes.bechdel
 
 #Render intro page
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
+
+#Render home page
+@app.route("/home")
+def home():
+    """Return the homepage."""
+    return render_template("home.html")
+
+#Render dashboard page
+@app.route("/dashboard")
+def dashboard():
+    """Return the homepage."""
+    return render_template("dashboard.html")
+
+#Render viz1 page
+@app.route("/genres-over-time")
+def viz1():
+    """Return the homepage."""
+    return render_template("viz1.html")
+
+#Render viz2 page
+@app.route("/women-of-their-word")
+def viz2():
+    """Return the homepage."""
+    return render_template("viz2.html")
+
+#Render resources page
+@app.route("/resources")
+def resources():
+    """Return the homepage."""
+    return render_template("resources.html")
+
+#Render resources page
+@app.route("/title-search")
+def titlesearch():
+    """Return the homepage."""
+    return render_template("title_search.html")
 
 #Pull data from db
 @app.route("/movies")
