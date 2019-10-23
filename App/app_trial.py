@@ -18,7 +18,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -47,12 +47,12 @@ def moviedata():
 
     #Create decades column. round down to nearest 10
     def round_down(num, divisor):
-    return num - (num%divisor)
+        return num - (num%divisor)
 
-    year = movie_df.year.values.tolist()
-    decade = []
-    for y in year:
-        decade.append(round_down(y, 10))
+        year = movie_df.year.values.tolist()
+        decade = []
+        for y in year:
+            decade.append(round_down(y, 10))
 
     # Format the data to send as json
     data = {

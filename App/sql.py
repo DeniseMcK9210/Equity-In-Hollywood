@@ -17,7 +17,6 @@ def create_connection(db_file):
     except Error as e:
         print(e)
  
-    return conn
 
 
 #Function to create table and insert csv data
@@ -30,11 +29,10 @@ def create_table(conn, create_table_sql, csvfile):
     try:
         c = conn.cursor()
         c.execute(create_table_sql)
+        c.execute('DELETE FROM bechdel')
         df = pd.read_csv(csvfile)
         df.to_sql('bechdel', conn, if_exists='append', index=False)
-      
-      #close connection
-       # conn.close()
+     
         
     except Error as e:
         print(e)
@@ -55,29 +53,33 @@ def select_all(conn):
     for row in rows:
         print(row)
 
+    cur.execute("SELECT COUNT(title) FROM bechdel;")
+    count = cur.fetchall()
+    print(count)
+
      #close connection
-        conn.close()
+    conn.close()
 
 
 #Connect to db, create table, import csv data
 def main():
     database = r'../App/bechdel.db'
  
-    create_bechdel_table = """CREATE TABLE IF NOT EXISTS bechdel (
-                        imdbid integer NOT NULL,
-                        bechdel_rating integer NOT NULL,
-                        title text NOT NULL,
-                        year integer NOT NULL,
-                        binary integer NOT NULL,
-                        budget_2013 integer NOT NULL,
-                        domgross_2013 integer NOT NULL,
-                        intgross_2013 integer NOT NULL,
-                        genres text NOT NULL,
-                        A text NOT NULL,
-                        B text NOT NULL,
-                        C text NOT NULL,
-                        averageRating real NOT NULL,
-                        numVotes integer NOT NULL);"""
+    create_bechdel_table = """CREATE TABLE IF NOT EXISTS "bechdel" (
+                        "imdbid" integer NOT NULL,
+                        "bechdel_rating" integer NOT NULL,
+                        "title" text NOT NULL,
+                        "year" integer NOT NULL,
+                        "binary" integer NOT NULL,
+                        "budget_2013" integer NOT NULL,
+                        "domgross_2013" integer NOT NULL,
+                        "intgross_2013" integer NOT NULL,
+                        "genres" text NOT NULL,
+                        "A" text NOT NULL,
+                        "B" text NOT NULL,
+                        "C" text NOT NULL,
+                        "averageRating" real NOT NULL,
+                        "numVotes" integer NOT NULL);"""
     
     csv = "../bechdel_final.csv"
  
