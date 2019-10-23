@@ -5,7 +5,7 @@ function titles(data) {
     var title2 = d3.select("#title2-input");
   
     //Define lists of titles
-    var titles = data.title.slice(0,100);
+    var titles = data.title.slice(0,100).sort();
 
     //Options for title 1
     titles.forEach((t) => {
