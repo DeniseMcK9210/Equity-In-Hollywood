@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
 mongo = PyMongo(app)
 
 #Render intro page
@@ -25,12 +25,10 @@ def index():
 @app.route("/movies")
 def moviedata():
     #Create dataframe
-    movie_df = pd.DataFrame(list(mongo.Project2.equityinhollywood.find({})))
-
-    print(movie_df)
+    movie_df = pd.DataFrame(list(mongo.db.collection_name.find({}))
 
     # Sort by domestic gross for bubble chart?
-    movie_df.sort_values(by="domgross_2013", ascending=False, inplace=True)
+    movie_df.sort_values(by=dom_gross2013, ascending=False, inplace=True)
 
     #Create decades column. round down to nearest 10
     def round_down(num, divisor):
@@ -49,8 +47,8 @@ def moviedata():
         "year": movie_df.year.values.tolist(),
         "binary": movie_df.binary.values.tolist(),
         "budget": movie_df.budget_2013.values.tolist(),
-        "dom_gross": movie_df.domgross_2013.values.tolist(),
-        "int_gross": movie_df.intgross_2013.values.tolist(),
+        "dom_gross": movie_df.dom_gross2013.values.tolist(),
+        "int_gross": movie_df.int_gross2013.values.tolist(),
         "genre": movie_df.genres.values.tolist(),
         "genreA": movie_df.A.values.tolist(),
         "genreB": movie_df.B.values.tolist(),

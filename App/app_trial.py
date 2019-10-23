@@ -3,17 +3,31 @@ import os
 import pandas as pd
 import numpy as np
 
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
 from flask import Flask, jsonify, render_template
-from flask_pymongo import PyMongo
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
 
 #################################################
 # Database Setup
 #################################################
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017"
-mongo = PyMongo(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
+db = SQLAlchemy(app)
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(db.engine, reflect=True)
+
+# Save reference to table
+movies = Base.classes.TABLE_NAME
 
 #Render intro page
 @app.route("/")
@@ -24,10 +38,9 @@ def index():
 #Pull data from db
 @app.route("/movies")
 def moviedata():
-    #Create dataframe
-    movie_df = pd.DataFrame(list(mongo.Project2.equityinhollywood.find({})))
-
-    print(movie_df)
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(movies).statement
+    movie_df = pd.read_sql_query(stmt, db.session.bind)
 
     # Sort by domestic gross for bubble chart?
     movie_df.sort_values(by="domgross_2013", ascending=False, inplace=True)
