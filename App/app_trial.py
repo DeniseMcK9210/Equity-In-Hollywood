@@ -27,7 +27,7 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save reference to table
-movies = Base.classes.TABLE_NAME
+movies = Base.classes.bechdel
 
 #Render intro page
 @app.route("/")
