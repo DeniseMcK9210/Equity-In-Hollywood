@@ -74,8 +74,8 @@ def titlesearch():
     return render_template("title_search.html")
 
 #Pull data from db
-@app.route("/movies")
-def moviedata():
+@app.route("/rmovies")
+def movierows():
     # Use Pandas to perform the sql query
     stmt = db.session.query(movies).statement
     movie_df = pd.read_sql_query(stmt, db.session.bind)
@@ -92,7 +92,32 @@ def moviedata():
     for y in year:
         decade.append(round_down(y, 10))
 
+    movie_df["decade"] = decade
+
     # Format the data to send as json
+    data = movie_df.to_json(orient='records')
+    return jsonify(data)
+
+#Pull data from db
+@app.route("/cmovies")
+def moviecolumns():
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(movies).statement
+    movie_df = pd.read_sql_query(stmt, db.session.bind)
+
+    # Sort by domestic gross for bubble chart?
+    movie_df.sort_values(by="domgross_2013", ascending=False, inplace=True)
+
+    #Create decades column. round down to nearest 10
+    def round_down(num, divisor):
+        return num - (num%divisor)
+
+    year = movie_df.year.values.tolist()
+    decade = []
+    for y in year:
+        decade.append(round_down(y, 10))
+
+     # Format the data to send as json
     data = {
         "id": movie_df.imdbid.values.tolist(),
         "bechdel_rating": movie_df.bechdel_rating.values.tolist(),
@@ -111,8 +136,6 @@ def moviedata():
         "num_votes": movie_df.numVotes.values.tolist()
     }
     return jsonify(data)
-
-
 
 if __name__ == "__main__":
     app.run()

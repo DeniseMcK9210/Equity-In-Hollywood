@@ -30,54 +30,22 @@ function bar_chart(data){
 };
 
  
-
 // Create bubble chart (function)
 function bubble(data) {
-   var data1 = data.filter(function (i,n){
-    return n.bechdel_rating == 1;
-    });
-  var budget = data.budget;
-  var rate = data.bechdel_rating.filter(d => d.bechdel_rating == 1);
-  var dom_gross = data.dom_gross.filter(d => d.bechdel_rating == "1");
-  var imdb_rating = data.imdb_rating.filter(d => d.bechdel_rating == 1);
-  console.log(data1)
+
   //var data1= bwdata.filter(d => d.bechdel_rating == 1);
   var bubble_trace1 = {
-      x: budget.slice(0,100),
-      y: dom_gross.slice(0,100),
+      x: data.budget.slice(0,100),
+      y: data.dom_gross.slice(0,100),
       name: "1",
       mode: 'markers',
       marker: {
         color: "#f3ff13",
         opacity: .75,
-        size: imdb_rating.slice(0,100)}
+        size: data.imdb_rating.slice(0,100)}
       };
-    
-    //var data2= bwdata.filter(d => d.bechdel_rating == 2);
-    var bubble_trace2 = {
-        x: budget.slice(0,100),
-        y: dom_gross.slice(0,100),
-        name: "2",
-        mode: 'markers',
-        marker: {
-          color: "#ff6e4e",
-          opacity: .75,
-          size: imdb_rating.slice(0,100)}
-        };
 
-        //var data3= bwdata.filter(d => d.bechdel_rating == 3);
-        var bubble_trace3 = {
-            x: budget.slice(0,100),
-            y: dom_gross.slice(0,100),
-            name: "3",
-            mode: 'markers',
-            marker: {
-              color: "#ff6e4e",
-              opacity: .75,
-              size: imdb_rating.slice(0,100)}
-            };    
-
-  var bubble_data = [bubble_trace1, bubble_trace2, bubble_trace3];
+  var bubble_data = [bubble_trace1];
   
   var bubble_layout = {
     showlegend: true,

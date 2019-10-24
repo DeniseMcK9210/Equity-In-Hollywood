@@ -49,20 +49,20 @@
                 <form>
                   <div class="form-group">
                     <label class="purple" for="title-form1">Select your first title</label>
-                    <select id="title1input" type="text" placeholder="Movie Title 1" name="title-form1"></select>
+                    <select id="title1input" type="text" placeholder="Movie Title 1" name="title-form1" onchange="optionChanged(this.value, 1)"></select>
                   </div>
                   <button id="button1" type="button" class="btn btn-default">Compare</button>
                 <hr class="hr-p">
                   </form>
-                  <table>
-                    <tbody id=#ts1></tbody>
-                  </table>
+                    <div id=#ts1>
+                        <hr>
+                  </div>
               </div>
                 <div class="jumbotron col-md-5 col-sm-12 mx-4">
                 <form>
                   <div class="form-group">
                     <label class="purple" for="title-form2">Select another title</label>
-                    <select id="title2input" type="text" placeholder="Movie Title 2" name="title-form2"></select>
+                    <select id="title2input" type="text" placeholder="Movie Title 2" name="title-form2" onchange="optionChanged(this.value)"></select>
                   </div>
                   <button id="button2" type="button" class="btn btn-default">Compare</button>
                     <hr class="hr-p">

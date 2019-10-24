@@ -25,63 +25,56 @@ function titles(data) {
   }
 
 //Fill select boxes w/data
-d3.json("/movies").then(function(data) {
+d3.json("/cmovies").then(function(data) {
     titles(data);
 }).catch(error => console.log(error)); 
 
 
 //Display stats for titles (function)
-function titlesearch(select) {
+function titlesearch(title) {
     
-    //Get selected title
-    var title = d3.select(`#title1input`).value
-    //.node().value;
-    //var sel = document.getElementById(`title1-input`);
-    //var title = sel.options[sel.selectedIndex].value;
-    //console.log(title)
+    console.log(title);
   
     //Pull in data 
-    d3.json("/movies").then(function(data) {
-      
+    d3.json("/rmovies").then(function(data) {
       //Filter the data w/ title inputs
-      var titledata = data.filter(d => d.title == title);
-      //data.title.findIndex(d => d.title == select)
-      
-
+      var titledata = JSON.parse(data).filter(d => d.title == title);
+        
         //Create array of data to display
         var displaydata = {
-            "Title": titledata.title,
-            "Genre": titledata.genre,
-            "Release Year": titledata.year,
-            "Bechdel Rating": titledata.bechdel_rating,
-            "IMDb Rating": titledata.imdb_rating,
-            "Budget ($)": titledata.budget,
-            "Domestic Gross ($)": titledata.dom_gross,
-            "International Gross($)": titledata.int_gross,
+            "Title": titledata[0].title,
+            "Genre": titledata[0].genres,
+            "Release Year": titledata[0].year,
+            "Bechdel Rating": titledata[0].bechdel_rating,
+            "IMDb Rating": titledata[0].averageRating,
+            "Budget ($)": titledata[0].budget_2013,
+            "Domestic Gross ($)": titledata[0].domgross_2013,
+            "International Gross($)": titledata[0].intgross_2013,
         };
-      
+        console.log(displaydata);
         //Add html to show stats in table for each title
         //Select div for stats
-        var titletron = d3.select(`#ts${select}`)
-
+        var titletron = d3.select('#ts1');
+        console.log(titletron);
         // Use `.html("") to clear any existing metadata
         titletron.html("");
 
+        console.log( Object.entries(displaydata));
         // Use `Object.entries` to add each key and value pair to the table
-        Object.entries(displaydata).forEach(([key, value]) => {
-            var row = titletron.append("tr");
-            var cell1 = row.append("td");
-            var cell2 = row.append("td");
-            cell1.text(key).classed("ft-sans", true);
-            cell2.text(value)
-          });
-
-      }).catch(error => console.log(error)); 
+        Object.entries(displaydata).forEach(([key, value]) =>
+            titletron.append("h5").text("x"));
+        
+    }).catch(error => console.log(error)); 
 
     };
 
+    function optionChanged(title) {
+        // Fetch new data each time a new sample is selected
+        titlesearch(title);
+      }
+
 //Display title 1 stats
-d3.select("#button1").on("click", titlesearch(1))
+//d3.select("#button1").on("click", titlesearch(1))
 
 //Display title 2 stats
-d3.select("#button2").on("click", titlesearch(2))
+//d3.select("#button2").on("click", titlesearch(2))
