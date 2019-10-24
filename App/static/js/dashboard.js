@@ -32,19 +32,19 @@ function bar_chart(data){
  
 // Create bubble chart (function)
 function bubble(data) {
-
-  //var data1= bwdata.filter(d => d.bechdel_rating == 1);
+  var data1 = JSON.parse(data).filter(d => d.bechdel_rating == 1);
+  console.log(data1);
   var bubble_trace1 = {
-      x: data.budget.slice(0,100),
-      y: data.dom_gross.slice(0,100),
+      x: data1.budget.slice(0,100),
+      y: data1.dom_gross.slice(0,100),
       name: "1",
       mode: 'markers',
       marker: {
         color: "#f3ff13",
         opacity: .75,
-        size: data.imdb_rating.slice(0,100)}
+        size: data1.imdb_rating.slice(0,100)}
       };
-
+  console.log(bubble_trace1),
   var bubble_data = [bubble_trace1];
   
   var bubble_layout = {
@@ -105,7 +105,7 @@ function dashfilter() {
   //var filteredd = d3.select("#dfilter option:selected").text();
 
   //Pull in data 
-  d3.json("/movies").then(function(data) {
+  d3.json("/rmovies").then(function(data) {
     
     //Filter the data w/ filteredd & filteredg
     var newdata = data
@@ -139,11 +139,13 @@ function dashfilter() {
 
 //Function to build dashboard
 function dashboard() {
+  d3.json("/cmovies").then(function(data) {
+    //Fill filter options
+    options(data);
+  });
+
     //Pull in data 
-    d3.json("/movies").then(function(data) {
-      
-      //Fill filter options
-      options(data);
+    d3.json("/rmovies").then(function(data) {
 
       //Fill BW Score gauge 1
       //create_gauge(data, 1)

@@ -31,7 +31,7 @@ d3.json("/cmovies").then(function(data) {
 
 
 //Display stats for titles (function)
-function titlesearch(title) {
+function titlesearch(title, titletron) {
     
     console.log(title);
   
@@ -54,7 +54,7 @@ function titlesearch(title) {
         console.log(displaydata);
         //Add html to show stats in table for each title
         //Select div for stats
-        var titletron = d3.select('#ts1');
+        //var titletron = d3.select('#ts1');
         console.log(titletron);
         // Use `.html("") to clear any existing metadata
         titletron.html("");
@@ -68,9 +68,16 @@ function titlesearch(title) {
 
     };
 
-    function optionChanged(title) {
+    function optionChanged1(title) {
+        var titletron = d3.select('#ts1');
         // Fetch new data each time a new sample is selected
-        titlesearch(title);
+        titlesearch(title, titletron);
+      }
+    
+    function optionChanged2(title) {
+        var titletron = d3.select('#ts2');
+        // Fetch new data each time a new sample is selected
+        titlesearch(title, titletron);
       }
 
 //Display title 1 stats
