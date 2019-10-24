@@ -18,7 +18,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bechdel.sqlite"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -26,10 +26,10 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
 
-#Base.classes.keys()
+Base.classes.keys()
 
 # Save reference to table
-#movies= Base.classes.bechdel
+movies= Base.classes.bechdel
 
 #Render intro page
 @app.route("/")
