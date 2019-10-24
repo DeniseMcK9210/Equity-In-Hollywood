@@ -292,7 +292,7 @@ function create_gauge(data, rating) {
         if(array[i] == rating)
             count123++;
     }
-    var value = (count1/counttotal)*100
+    var value = (count123/counttotal)*100
     var gauge1 = loadLiquidFillGauge(`fillgauge${rating}`, value, config2);
     var config2 = liquidFillGaugeDefaultSettings();
     config2.circleColor = "#ee3ec9";
@@ -307,7 +307,7 @@ function create_gauge(data, rating) {
     config2.waveCount = 1;
 
         function initialf(){
-            return "32";
+            return "value";
 
 
 }

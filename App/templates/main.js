@@ -22,7 +22,7 @@
     // of different video formats to add
     src: [
       {
-        src: 'media/night.mp4',
+        src: "{{ url_for('static', filename='media/night.mp4') }}",
         type: 'video/mp4'
       },
       {

@@ -3,17 +3,33 @@ import os
 import pandas as pd
 import numpy as np
 
+import psycopg2
+
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
 from flask import Flask, jsonify, render_template
-from flask_pymongo import PyMongo
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
 
 #################################################
 # Database Setup
 #################################################
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017"
-mongo = PyMongo(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/BechdelData'
+db = SQLAlchemy(app)
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(db.engine, reflect=True)
+
+# Save reference to table
+movies= Base.classes.bechdel
 
 #Render intro page
 @app.route("/")
@@ -21,20 +37,55 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+#Render home page
+@app.route("/home")
+def home():
+    """Return the homepage."""
+    return render_template("home.html")
+
+#Render dashboard page
+@app.route("/dashboard")
+def dashboard():
+    """Return the homepage."""
+    return render_template("dashboard.html")
+
+#Render viz1 page
+@app.route("/genres-over-time")
+def viz1():
+    """Return the homepage."""
+    return render_template("viz1.html")
+
+#Render viz2 page
+@app.route("/women-of-their-word")
+def viz2():
+    """Return the homepage."""
+    return render_template("viz2.html")
+
+#Render resources page
+@app.route("/resources")
+def resources():
+    """Return the homepage."""
+    return render_template("resources.html")
+
+#Render resources page
+@app.route("/title-search")
+def titlesearch():
+    """Return the homepage."""
+    return render_template("title_search.html")
+
 #Pull data from db
 @app.route("/movies")
 def moviedata():
-    #Create dataframe
-    movie_df = pd.DataFrame(list(mongo.Project2.equityinhollywood.find({})))
-
-    print(movie_df)
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(movies).statement
+    movie_df = pd.read_sql_query(stmt, db.session.bind)
 
     # Sort by domestic gross for bubble chart?
     movie_df.sort_values(by="domgross_2013", ascending=False, inplace=True)
 
     #Create decades column. round down to nearest 10
     def round_down(num, divisor):
-    return num - (num%divisor)
+        return num - (num%divisor)
 
     year = movie_df.year.values.tolist()
     decade = []
@@ -54,7 +105,7 @@ def moviedata():
         "genre": movie_df.genres.values.tolist(),
         "genreA": movie_df.A.values.tolist(),
         "genreB": movie_df.B.values.tolist(),
-        "genreC": movie_df.C.values.tolist(),
+        "genreC": movie_df.c.values.tolist(),
         "decade": decade,
         "imdb_rating": movie_df.averageRating.values.tolist(),
         "num_votes": movie_df.numVotes.values.tolist()

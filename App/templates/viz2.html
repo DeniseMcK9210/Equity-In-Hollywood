@@ -21,7 +21,7 @@
   <body class="fa-sans"> 
       <nav class="navbar navbar-expand-lg bg-white py-1 fixed-top">
           <a class="navbar-brand" href="/">
-            <img class="logo" src="media/logo.png" alt="Gender Equity in Hollywood">
+            <img class="logo" src="{{ url_for('static', filename='media/logo.png') }}" alt="Gender Equity in Hollywood">
             </a>
         </nav>
 
@@ -47,11 +47,11 @@
             <div class="row pt-2">
                 <div class="col-md-6 col-sm-12" id="wc1">
                     <h5>2009</h5>
-                    <img src='media/2009topics.png' alt="2009" height=375>
+                    <img src="{{ url_for('static', filename='media/2009topics.png') }}", alt="2009" width=100%>
                 </div>
                 <div class="col-md-6 col-sm-12" id="wc2">
                     <h5>2019</h5>
-                    <img src='media/2019topics.png' alt="2019" height=375>
+                    <img src="{{ url_for('static', filename='media/2019topics.png') }}" alt="2019" width=100%>
                 </div>
                 </div>
             <h5 class="pink pt-5">Analysis</h5>

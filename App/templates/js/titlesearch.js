@@ -1,8 +1,8 @@
 //Fill title select boxes(function)
 function titles(data) {
     // Grab a reference to the dropdown select elements
-    var title1 = d3.select("#title1input");
-    var title2 = d3.select("#title2input");
+    var title1 = d3.select("#title1-input");
+    var title2 = d3.select("#title2-input");
   
     //Define lists of titles
     var titles = data.title.slice(0,100).sort();
@@ -34,19 +34,14 @@ d3.json("/movies").then(function(data) {
 function titlesearch(select) {
     
     //Get selected title
-    var title = d3.select(`#title1input`).value
-    //.node().value;
-    //var sel = document.getElementById(`title1-input`);
-    //var title = sel.options[sel.selectedIndex].value;
-    //console.log(title)
+    var title = d3.select(`#title${select}-input option:selected`).text();
   
     //Pull in data 
     d3.json("/movies").then(function(data) {
       
       //Filter the data w/ title inputs
-      var titledata = data.filter(d => d.title == title);
-      //data.title.findIndex(d => d.title == select)
-      
+      var titledata = data.filter(d =>
+        d.title == title);
 
         //Create array of data to display
         var displaydata = {

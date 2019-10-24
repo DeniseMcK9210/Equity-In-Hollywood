@@ -3,6 +3,8 @@ import os
 import pandas as pd
 import numpy as np
 
+import psycopg2
+
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -18,15 +20,13 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bechdel.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/BechdelData'
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
-
-Base.classes.keys()
 
 # Save reference to table
 movies= Base.classes.bechdel
@@ -87,10 +87,10 @@ def moviedata():
     def round_down(num, divisor):
         return num - (num%divisor)
 
-        year = movie_df.year.values.tolist()
-        decade = []
-        for y in year:
-            decade.append(round_down(y, 10))
+    year = movie_df.year.values.tolist()
+    decade = []
+    for y in year:
+        decade.append(round_down(y, 10))
 
     # Format the data to send as json
     data = {
@@ -105,7 +105,7 @@ def moviedata():
         "genre": movie_df.genres.values.tolist(),
         "genreA": movie_df.A.values.tolist(),
         "genreB": movie_df.B.values.tolist(),
-        "genreC": movie_df.C.values.tolist(),
+        "genreC": movie_df.c.values.tolist(),
         "decade": decade,
         "imdb_rating": movie_df.averageRating.values.tolist(),
         "num_votes": movie_df.numVotes.values.tolist()

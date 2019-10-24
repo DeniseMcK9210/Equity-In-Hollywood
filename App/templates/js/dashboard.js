@@ -1,5 +1,3 @@
-
-
 // create a bar chart (function)
 function bar_chart(data){
 
@@ -33,56 +31,23 @@ function bar_chart(data){
 
 // Create bubble chart (function)
 function bubble(data) {
-   var data1 = data.filter(function (i,n){
-    return n.bechdel_rating == 1;
-    });
-  var budget = data.budget;
-  var rate = data.bechdel_rating.filter(d => d.bechdel_rating == 1);
-  var dom_gross = data.dom_gross.filter(d => d.bechdel_rating == "1");
-  var imdb_rating = data.imdb_rating.filter(d => d.bechdel_rating == 1);
-  console.log(data1)
-  //var data1= bwdata.filter(d => d.bechdel_rating == 1);
-  var bubble_trace1 = {
-      x: budget.slice(0,100),
-      y: dom_gross.slice(0,100),
-      name: "1",
-      mode: 'markers',
-      marker: {
-        color: "#f3ff13",
-        opacity: .75,
-        size: imdb_rating.slice(0,100)}
-      };
-    
-    //var data2= bwdata.filter(d => d.bechdel_rating == 2);
-    var bubble_trace2 = {
-        x: budget.slice(0,100),
-        y: dom_gross.slice(0,100),
-        name: "2",
-        mode: 'markers',
-        marker: {
-          color: "#ff6e4e",
-          opacity: .75,
-          size: imdb_rating.slice(0,100)}
-        };
 
-        //var data3= bwdata.filter(d => d.bechdel_rating == 3);
-        var bubble_trace3 = {
-            x: budget.slice(0,100),
-            y: dom_gross.slice(0,100),
-            name: "3",
-            mode: 'markers',
-            marker: {
-              color: "#ff6e4e",
-              opacity: .75,
-              size: imdb_rating.slice(0,100)}
-            };    
-
-  var bubble_data = [bubble_trace1, bubble_trace2, bubble_trace3];
+var bubble_trace = {
+    x: data.budget.slice(0,100),
+    y: data.dgross.slice(0,100),
+    mode: 'markers',
+    marker: {
+      color: data.bwscore.slice(0,100),
+      opacity: .75,
+      size: data.imdbscore.slice(0,100)}
+    };
+  
+  var bubble_data = [bubble_trace];
   
   var bubble_layout = {
     showlegend: true,
-    height: "100%",
-    width: "100%",
+    height: 500,
+    width: 1000,
     xaxis:{
         title: 'Budget($)'
       },
@@ -133,34 +98,33 @@ function options(data) {
 
 //Filter dashboard (function)
 function dashfilter() {
-  //var filteredg = d3.select("#gfilter option:selected").text();
-  //var filteredd = d3.select("#dfilter option:selected").text();
+  var filteredg = d3.select("#gfilter option:selected").text();
+  var filteredd = d3.select("#dfilter option:selected").text();
 
   //Pull in data 
-  d3.json("/movies").then(function(data) {
+  d3.json("link from app.py").then(function(data) {
     
     //Filter the data w/ filteredd & filteredg
-    var newdata = data
-    //data.filter(d =>
-     // d.genreA === filteredg || 
-      //d.genreB === filteredg ||
-      //d.genreC === filteredg && 
-      //d.decade === filteredd)
+    var newdata = data.filter(d =>
+      d.genreA === filteredg || 
+      d.genreB === filteredg ||
+      d.genreC === filteredg && 
+      d.decade === filteredd)
 
     //Fill filter options
     options(newdata);
 
     //Fill BW Score gauge 1
-    //create_gauge(newdata, 1)
+    create_gauge(newdata, 1)
 
     //Fill BW Score gauge 2
-    //create_gauge(newdata, 2)
+    create_gauge(newdata, 2)
 
     //Fill BW Score gauge 3
-    //create_gauge(newdata, 3)
+    create_gauge(newdata, 3)
 
     //Create Bar Chart
-    //bar_chart(newdata);
+    bar_chart(newdata);
 
     //Create Bubble Chart
     bubble(newdata);
@@ -178,16 +142,16 @@ function dashboard() {
       options(data);
 
       //Fill BW Score gauge 1
-      //create_gauge(data, 1)
+      create_gauge(data, 1)
 
       //Fill BW Score gauge 2
-      //create_gauge(data, 2)
+      create_gauge(data, 2)
 
       //Fill BW Score gauge 3
-      //create_gauge(data, 3)
+      create_gauge(data, 3)
 
       //Create Bar Chart
-      //bar_chart(data);
+      bar_chart(data);
 
       //Create Bubble Chart
       bubble(data);
@@ -202,4 +166,3 @@ dashboard()
 
 //Filter the dashboard on click of filter button
 d3.select("#filter").on("click", dashfilter())
-
