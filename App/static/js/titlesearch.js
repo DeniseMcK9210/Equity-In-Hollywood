@@ -62,7 +62,8 @@ function titlesearch(title, titletron) {
         console.log( Object.entries(displaydata));
         // Use `Object.entries` to add each key and value pair to the table
         Object.entries(displaydata).forEach(([key, value]) =>
-            titletron.append("h5").text("x"));
+            //console.log(titletron);
+            titletron.append("h5").text(`${key} : ${value}`));
         
     }).catch(error => console.log(error)); 
 
