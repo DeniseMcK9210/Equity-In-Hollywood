@@ -117,6 +117,8 @@ def moviecolumns():
     for y in year:
         decade.append(round_down(y, 10))
 
+    
+
      # Format the data to send as json
     data = {
         "id": movie_df.imdbid.values.tolist(),
