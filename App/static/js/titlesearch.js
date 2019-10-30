@@ -62,7 +62,7 @@ function titlesearch(title, titletron) {
         console.log( Object.entries(displaydata));
         // Use `Object.entries` to add each key and value pair to the table
         Object.entries(displaydata).forEach(([key, value]) =>
-            //console.log(titletron);
+            //console.log([key, value]),
             titletron.append("h5").text(`${key} : ${value}`));
         
     }).catch(error => console.log(error)); 
@@ -82,7 +82,7 @@ function titlesearch(title, titletron) {
       }
 
 //Display title 1 stats
-//d3.select("#button1").on("click", titlesearch(1))
+//d3.select("#button1").on("click", optionChanged1(titleselect))
 
 //Display title 2 stats
-//d3.select("#button2").on("click", titlesearch(2))
+//d3.select("#button2").on("click", optionChanged2(titleselect))

@@ -1,35 +1,54 @@
-
 d3.json("/cmovies").then(function(data) {
-  //var arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
   // Create the Trace
   var trace1 = {
     x: data.bechdel_rating,
     y: data.dom_gross,
     type: "bar",
-    name: "Domestic Gross",
+    name: "Avg. Domestic Gross",
     marker: {
       color: '#ee3ec9'
-    }
+    },
+    transforms: [{
+      type: 'aggregate',
+      groups: data.bechdel_rating,
+      aggregations: [
+        {target: 'y', func: 'avg', enabled: true},
+      ]
+    }]
   };
 
   var trace2 = {
     x: data.bechdel_rating,
     y: data.int_gross,
     type: "bar",
-    name:"International Gross",
+    name:"Avg. International Gross",
     marker: {
       color: '#ff6e4e'
-    }
+    },
+    transforms: [{
+      type: 'aggregate',
+      groups: data.bechdel_rating,
+      aggregations: [
+        {target: 'y', func: 'avg', enabled: true},
+      ]
+    }]
   };
 
   var trace3 = {
     x: data.bechdel_rating,
     y: data.budget,
     type: "bar",
-    name:"Budget",
+    name:"Avg. Budget",
     marker: {
       color: '#f3ff13'
-    }
+    },
+    transforms: [{
+      type: 'aggregate',
+      groups: data.bechdel_rating,
+      aggregations: [
+        {target: 'y', func: 'avg', enabled: true},
+      ]
+    }]
   };
 
 
