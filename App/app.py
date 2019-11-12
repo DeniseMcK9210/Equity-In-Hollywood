@@ -9,7 +9,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
-
+from sqlalchemy import Column, Integer
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
@@ -20,16 +20,24 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/BechdelData'
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/project2_bechdelfinal.db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
 Base = automap_base()
+
+class Movies(Base):
+
+    __tablename__ = 'bechdel_table'
+
+    index = Column(Integer, primary_key=True)
+
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
 
+
 # Save reference to table
-movies= Base.classes.bechdel
+#movies= Base.classes.bechdel_table
 
 #Render intro page
 @app.route("/")
