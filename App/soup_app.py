@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 import psycopg2
-
+import sqlite3
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -12,7 +12,8 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, Table
+from sqlalchemy.orm import mapper, sessionmaker
 
 app = Flask(__name__)
 
@@ -21,24 +22,31 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/project2_bechdelfinal.db"
-db = SQLAlchemy(app)
 
-# reflect an existing database into a new model
+class Movies(object):
+    pass
+ 
+#----------------------------------------------------------------------
+   
+engine = create_engine('sqlite:///db/trial.db', echo=False)
+metadata = MetaData(engine)
+bechdel_table = Table('bechdel_table', metadata, Column("imdbid", Integer, primary_key=True),
+                      autoload=True)
+
+mapper(Movies, bechdel_table)
+ 
+Session = sessionmaker(bind=engine)
+session = Session()
+
 Base = automap_base()
 
-class bechdel_table(Base):
-
-    __tablename__ = 'bechdel_table'
-
-    index = Column(Integer, primary_key=True)
-
 # reflect the tables
-Base.prepare(db.engine, reflect=True)
+Base.prepare(engine, reflect=True)
 
-print(MetaData().tables.keys())
+
 # Save reference to table
-movies= Base.classes.bechdel_table
+#movies= Base.classes.bechdel_table
+movies = metadata.tables['bechdel_table']
 
 #Render intro page
 @app.route("/")
@@ -86,8 +94,11 @@ def titlesearch():
 @app.route("/rmovies")
 def movierows():
     # Use Pandas to perform the sql query
-    stmt = db.session.query(movies).statement
-    movie_df = pd.read_sql_query(stmt, db.session.bind)
+    #results = session.query(movies).all()
+    #print(results[0])
+    stmt = session.query(movies).statement
+    movie_df = pd.read_sql_query(stmt, session.bind)
+
 
     # Sort by domestic gross for bubble chart?
     movie_df.sort_values(by="domgross_2013", ascending=False, inplace=True)
@@ -111,8 +122,8 @@ def movierows():
 @app.route("/cmovies")
 def moviecolumns():
     # Use Pandas to perform the sql query
-    stmt = db.session.query(movies).statement
-    movie_df = pd.read_sql_query(stmt, db.session.bind)
+    stmt = session.query(movies).statement
+    movie_df = pd.read_sql_query(stmt, session.bind)
 
     # Sort by domestic gross for bubble chart?
     movie_df.sort_values(by="domgross_2013", ascending=False, inplace=True)
@@ -141,7 +152,7 @@ def moviecolumns():
         "genre": movie_df.genres.values.tolist(),
         "genreA": movie_df.A.values.tolist(),
         "genreB": movie_df.B.values.tolist(),
-        "genreC": movie_df.c.values.tolist(),
+        "genreC": movie_df.C.values.tolist(),
         "decade": decade,
         "imdb_rating": movie_df.averageRating.values.tolist(),
         "num_votes": movie_df.numVotes.values.tolist()
@@ -149,4 +160,4 @@ def moviecolumns():
     return jsonify(data)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
