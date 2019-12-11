@@ -1,4 +1,4 @@
-# Project 2 - Equity-In-Hollywood
+# Equity-In-Hollywood
 
 ### Background
 
