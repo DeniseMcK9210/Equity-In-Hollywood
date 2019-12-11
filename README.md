@@ -11,6 +11,7 @@ We decided to take this study into our own hands by analyzing film data from 197
 2. Which genres dominate or under perform in passing the Bechdel test?
 3. Is the American public interested in diverse Hollywood titles?
 4. Are Hollywood filmmakers investing in movies that pass the Bechdel test?
+5. What are the trending topics of conversation in films that pass the third criteria of the test?
 
 Our visualization includes a Python Flask-powered RESTful API, HTML/CSS, Javascript, and SQLite database. Our final project:
 
@@ -27,7 +28,10 @@ We used a combination of CSV files and an API that we converted to CSV formattin
 - https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
 - https://datasets.imdbws.com/
 
-### Analysis 
+### Analysis Summary
+In 2013, media industry studies showed that films that pass the test financially outperform those who do not. Our assumption was the more Bechdel criteria a movie meets, the greater the gross revenue. Our data, shows that general idea, but it also shows a budget trend line that moves with the gross. It could be the possible cause of the gross trend. The industry may have noticed the demand for equitable representation of women on screen and invested more in movies that pass the Bechdel Test.
+
+For movies that did pass the Bechdel test in 2009 versus 2019, the topics of discussion (that were not about men), have become darker in tone. This could either reflect a change in cultural trends or simply reflect casting of more women in serious, complex roles.
 
 ### Copyright
 
