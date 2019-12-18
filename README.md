@@ -24,9 +24,9 @@ Our visualization includes a Python Flask-powered RESTful API, HTML/CSS, Javascr
 ### Data Used 
 We used a combination of CSV files and an API that we converted to CSV formatting for this study. The data included information from 1970 to 2013 with the following points of interest: Year, IMDB rating, Title, Test Results, Domestic Gross, International Gross, and Budget. We used a series of pandas functions in Jupyter Notebook to Extract and Transform this data and used SQL queries to Load it into a database for use on this site.
 
-- http://bechdeltest.com/api/v1/doc
-- https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
-- https://datasets.imdbws.com/
+- [Bechdel Test API](http://bechdeltest.com/api/v1/doc)
+- [FiveThirtyEight Repository](https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv)
+- [IMDB Datasets](https://datasets.imdbws.com/)
 
 ### Analysis Summary
 In 2013, media industry studies showed that films that pass the test financially outperform those who do not. Our assumption was the more Bechdel criteria a movie meets, the greater the gross revenue. Our data, shows that general idea, but it also shows a budget trend line that moves with the gross. It could be the possible cause of the gross trend. The industry may have noticed the demand for equitable representation of women on screen and invested more in movies that pass the Bechdel Test.
